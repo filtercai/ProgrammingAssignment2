@@ -3,12 +3,12 @@
 ## Chunhua Cai
 ## 2015-10-22
 
-## example:
-## > mt <- cbind(c(1,2),c(3,4))
-## > source("cachematrix.R")   
-## > tt <- makeCacheMatrix(mt) 
-## > cacheSolve(tt)  # will display the result
-## > cacheSolve(tt)  # will display a msg and the result
+## usage example:
+## > mt <- cbind(c(1,2),c(3,4))  # create the test matrix
+## > source("cachematrix.R")     #
+## > tt <- makeCacheMatrix(mt)   # create the specical objects
+## > cacheSolve(tt)              # will display the result
+## > cacheSolve(tt)              # will display a msg and the result
 ##
 
 ## Function to init and cache the result matrix
@@ -54,11 +54,13 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
     ## Return a matrix that is the inverse of 'x'
     m <- x$getMatrix()
+    # determine the cached status
     if (!is.null(m)) {
         message("getting from cached data")
         return(m)
     }
     
+    # get the matrix and calculate the inverse
     data <- x$get()
     m <- solve(data, ...)
     
